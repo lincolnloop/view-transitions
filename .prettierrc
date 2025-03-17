@@ -1,0 +1,16 @@
+{
+  "plugins": [
+    "prettier-plugin-jinja-template"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "**/{templates,jinja2}/**/*.html"
+      ],
+      "options": {
+        "parser": "jinja-template",
+        "quoteAttributes": false
+      }
+    }
+  ]
+}

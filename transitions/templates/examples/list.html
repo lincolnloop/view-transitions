@@ -1,0 +1,58 @@
+{% extends "examples/base.html" %}
+
+{% block title %}List{% endblock %}
+
+{% block content %}
+  <h1>Example List</h1>
+  <div class="grid">
+    {% for item in items %}
+      <article style="view-transition-name: item-{{ item }}">
+        <header>
+          <h2>
+            Item {{ item }}
+            <small style="font-size: 0.5em"
+              >(<a href="/detail/{{ item }}">detail</a>)</small
+            >
+          </h2>
+        </header>
+        {% if item == request.GET.more %}
+          <p>This is some more info for item {{ item }}.</p>
+          <p>
+            The style attached to this <code>article</code> block is
+            <code>view-transition-name: item-{{ item }}</code>, allowing a nice
+            transition between the list page and
+            <a href="/detail/{{ item }}">the detail page</a>.
+          </p>
+          <a href="?">&uarr; Close</a>
+        {% else %}
+          <a href="?more={{ item }}">&darr; More info</a>
+        {% endif %}
+      </article>
+    {% endfor %}
+  </div>
+
+  <section class="explanation">
+    <h2>In-Page Transitions with view-transition-name</h2>
+    <p>
+      The <code>view-transition-name</code> CSS property can also be used to create
+      smooth transitions between states within the same page. By assigning unique
+      names to elements, the browser can animate changes to those elements when
+      their content or position changes.
+    </p>
+    <p>
+      In this example, each item in the list has a unique view-transition-name
+      (<code>item-{{ item }}</code>). When you click "More info" or "detail", the browser
+      smoothly animates the expansion of the selected item while maintaining
+      the position of other items.
+    </p>
+    <p>
+      This technique is particularly useful for:
+      <ul>
+        <li>Expanding/collapsing content sections</li>
+        <li>Reordering lists</li>
+        <li>Updating content while maintaining visual continuity</li>
+      </ul>
+    </p>
+    <a href="/alpine-ajax" role="button">View alpine-ajax integration</a>
+  </section>
+{% endblock %}

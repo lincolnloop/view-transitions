@@ -1,0 +1,78 @@
+{% extends "examples/base.html" %}
+
+{% block title %}Alpine-Ajax Grid{% endblock %}
+
+{% block extra_head %}
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/@imacrayon/alpine-ajax@0.12.0/dist/cdn.min.js"
+  ></script>
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"
+  ></script>
+{% endblock %}
+
+{% block content %}
+  <h1>Alpine-Ajax Grid</h1>
+
+  <div id="alpine-ajax-grid" x-merge.transition>
+    {% for item in items %}
+      <article style="view-transition-name: aa-{{ item }}">
+        <h2>Item {{ item }}</h2>
+        <form method="post" action="" x-target="alpine-ajax-grid">
+          {% csrf_token %}
+          <button
+            type="submit"
+            name="remove-item"
+            value="{{ item }}"
+            class="secondary"
+          >
+            Remove
+          </button>
+        </form>
+      </article>
+    {% endfor %}
+  </div>
+  <form
+    method="post"
+    action=""
+    x-target="alpine-ajax-grid"
+    x-sync
+    id="add-reset-form"
+  >
+    {% csrf_token %}
+    <p>
+      <button name="add-item">Add Item</button>
+      {% if different %}
+        <button name="reset" class="contrast">Reset</button>
+      {% endif %}
+    </p>
+  </form>
+  <textarea>
+Change the text here to see that changing items doesn't refresh the page.</textarea
+  >
+
+  <section class="explanation">
+    <h2>
+      Dynamic List with
+      <a target="_blank" href="https://alpine-ajax.js.org/">alpine-ajax</a>
+    </h2>
+    <p>
+      Similar to (but even simpler to use than) HTMX, alpine-ajax allows for
+      partial page updates. To make only certain targets within the page update
+      rather than trigger a full page refresh, add
+      <code>x-target="<em>html-id</em>"</code> to the <code>form</code> or
+      <code>a</code> tag.
+    </p>
+    <p>
+      To make smooth CSS transitions using the
+      <code>view-transition-name</code> CSS property work with Alpine-ajax, just
+      add <code>x-merge.transition</code> to the container element.
+    </p>
+    <p>
+      Each item in the grid has a unique view transition name, allowing smooth
+      animations when items are added or removed.
+    </p>
+  </section>
+{% endblock %}

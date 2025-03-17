@@ -1,0 +1,19 @@
+{% extends "examples/base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+  <section class="explanation">
+    <h1>View Transitions</h1>
+    <p>This is a simple example site showing off view transitions.</p>
+    <p>To get cross-page transitions, simply add this to your CSS:</p>
+
+    <pre>
+@view-transition {
+  navigation: auto; 
+}</pre
+    >
+    <p>This will add a smooth fade transition between pages.</p>
+    <a href="/list" role="button">View List</a>
+  </section>
+{% endblock %}

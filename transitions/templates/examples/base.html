@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{% block title %}Example Pages{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+    <style>
+      @view-transition {
+        navigation: auto;
+      }
+      .explanation {
+        view-transition-name: explanation;
+      }
+      #alpine-ajax-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0 1rem;
+      }
+      #alpine-ajax-grid[aria-busy="true"]::before {
+        position: absolute;
+      }
+    </style>
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body>
+    <nav class="container">
+      <ul>
+        <li>
+          {% block nav_title %}
+            <strong style="view-transition-name: nav-title">
+              <a href="/">View Transitions Example Site</a>
+            </strong>
+          {% endblock %}
+        </li>
+      </ul>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/list">List</a></li>
+        <li><a href="/alpine-ajax">alpine-ajax</a></li>
+      </ul>
+    </nav>
+
+    <main class="container">{% block content %}{% endblock %}</main>
+  </body>
+</html>

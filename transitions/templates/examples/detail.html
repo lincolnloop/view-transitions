@@ -1,0 +1,13 @@
+{% extends "examples/base.html" %}
+
+{% block title %}Detail{% endblock %}
+
+{% block content %}
+  <h1>Example Item Detail</h1>
+  <article style="view-transition-name: item-{{ view.kwargs.pk }}">
+    <h2>Item {{ view.kwargs.pk }}</h2>
+    <p>This is the detail view for item {{ view.kwargs.pk }}.</p>
+    <p>Some additional details about this item.</p>
+  </article>
+  <a href="/list" role="button">Back to List</a>
+{% endblock %}
