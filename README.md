@@ -10,4 +10,3 @@ This is a Django project demonstrating the View Transition API.
 uv sync
 ./manage.py runserver
 ```
-cr
